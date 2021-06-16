@@ -1,0 +1,5 @@
+print("This is my first python file!")
+print("Today is the start of practicing the programming language Python!")
+print("Over the summer of 2021, I will be teaching myself how to code in Python!")
+print("I predict this will be challenging and interesting.")
+print("Date: 06/16/2021")
