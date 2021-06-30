@@ -43,6 +43,9 @@
     <Compile Include="Day8Practice.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Day9Practice.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PythonPractice.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

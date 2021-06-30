@@ -47,7 +47,7 @@ cat1 = Cat()
 cat2 = Cat(True)
 cat3 = Cat(True, "female")
 cat3 = Cat(True, "female", 5)
-cat4 = Cat(False, "male", 10)
+cat4 = Cat(Meow = False,gender = "male", age = 10)
 
 cat2.isCatHungry()
 cat4.isCatHungry()
