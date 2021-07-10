@@ -1,7 +1,7 @@
 # This is the 9th day of Python practice.
 # Today, I will focus on inheritance in Python
 
-# Using the Dog class I created, I will make a
+# Using the Cat class I created, I will make a
 # BengalCat class that will inherit the methods from
 # the Cat class.
 # In addition, I will learn about overriding methods
