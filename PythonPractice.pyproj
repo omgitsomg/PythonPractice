@@ -28,6 +28,9 @@
     <Compile Include="Day11Practice.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Day12Practice.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Day2Practice.py">
       <SubType>Code</SubType>
     </Compile>

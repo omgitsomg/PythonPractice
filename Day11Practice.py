@@ -1,94 +1,80 @@
-# Today is the 11th day of Python Practice
-# Today, I will recap and practice what I have learned
-# about Python so far and learn a little about boolean.
-# In other words, I want to reinforce what I have learned so far, and
-# add a little of what I learned today.
+# This the 11th day of Python Practice
+# Today, I will focus on keyword arguments,
+# decorators, anonymous functions, and * and ** operators
 
-from datetime import date
-from datetime import timedelta
+# Keyword arguments are arguments that you pass in with a variable attached to them
+# Keyword arguments do not rely on positions.
 
-class HealthBuilding:
+# To force a keyword argument to be passed into the function,
+# you simply put a * at the beginning of the function parameter
+# For example
 
-    bloodsupply = False
-    city = "Compsci City"
-    currentDate = date.today()
+def divide_x_by_y(*, x, y):
+    result = x / y
+    return result
 
-    def __init__(self, newStatus, numNurses, numDoctors, numPatients):
-        self.status = newStatus
-        self.nurses = numNurses
-        self.doctors = numDoctors 
-        self.patients = numPatients
-        currentDate = date.today()
+#result = divide_x_by_y(2,3)
+# The statement above this comment gives an error message that reads
+# "divide_x_by_y() takes 0 positional arguments but 2 were given"
 
-    def prepareBlood(self):
-        if self.bloodsupply is True:
-            print("The blood for the blood transfusion is ready")
-        else:
-            print("There's not enough blood supply for a blood transfusion\nPlease request blood from the", self.city, "blood center")
+result = divide_x_by_y(x = 2, y = 3)
+print(result)
+result2 = divide_x_by_y(y = 4, x = 2)
+print(result2)
+# By providing what numbers are attached to what variable,
+# the function will know what variable is being divided by what.
 
-    def requestBlood(self):
-        estimatedDateofArrival = date.today() + timedelta(days = 3)
-        if self.currentDate != estimatedDateofArrival:
-            print("The request for blood from the blood center has been sent")
-            print("The blood center said the blood will arrive in a few days.")
-            print("Estimated Date of Arrival:", estimatedDateofArrival)
-        else:
-            self.bloodsupply = True
-            print("The blood from the blood center has arrived!\nWe can perform blood transfusions now.")
+# To unpack dictionaries that are sent to functions, you use the ** operator
 
-    def incrementDay(self):
-        self.currentDate =  self.currentDate + timedelta(days = 1)
+xy_Dictionary = {"x" : 4,
+                 "y" : 1}
+print(divide_x_by_y(**xy_Dictionary))
+xy_Dictionary2 = {"y" : 4,
+                 "x" : 1}
+print(divide_x_by_y(**xy_Dictionary2))
 
-    def printProperties(self):
-        tempDict = {"City:" : self.city,
-                       "Status:" : self.status,
-                       "Number of Nurses:" : self.nurses,
-                       "Number of Doctors:" : self.doctors,
-                       "Number of Patients:" : self.patients}
+# To unpack arrays and lists that are sent to functions, you use the * operator
 
-        for i, j in tempDict.items():
-            print(i, j)
+def printArray (a, b, c, d):
+    print(a, b, c, d)
+arr1 = [0, 1, 2, 3]
+printArray(*arr1)
 
-    def patientLeaves(self):
-        self.patients -= 1
-        print("A patient has been discharged from the hospital!")
+# Decorators are wrappers around a function that allows modification in a specific way.
+# For example
 
-    def bloodtransfusion(self):
-        if self.bloodsupply is True:
-            print("The blood for the blood transfusion is ready.")
-            print("The blood transfusion for the patient was successful!")
-            print("The patient was happy about the operation!")
-            self.patientLeaves()
-        else:
-            print("The hospital does not have adequate amounts of blood for a blood transfusion.")
-            print("Please wait until the blood from the blood center arrives.")
+def print_argument(func):
+    def wrapper(num):
+        print("The argument for", func.__name__ , "is", num)
+        return func(num)
 
-    def printDate(self):
-        print(self.currentDate)
+    return wrapper
+
+@print_argument
+def multiplyByThree(number):
+    return number * 3
+
+print(multiplyByThree(4))
+
+# As you can see above, the decorator part is "@print_argument" line.
+# Within the print_argument() function, the wrapper function prints out a statement.
+# That statement grabs the function's name and the argument being passed to that function.
+# It, then, returns the result of the multiplyByThree() function with the argument being passed to it.
 
 
+# Anonymous functions are functions that are simple, and
+# are normally used once.
+# For example
 
+multiplyByTwo = lambda x : x * 2
+product = multiplyByTwo(10)
+print(product)
 
+# Above, the lambda keyword is assign to the variable x. 
+# Whatever is passed to multiplyByTwo, that will be assigned to the variable "x".
 
+add_five = map(lambda x : x + 5, arr1)
+print(list(add_five))
 
-exHealthBuilding = HealthBuilding(newStatus = "Full", numNurses = 25, numDoctors = 5, numPatients = 30)
-exHealthBuilding.printProperties()
-exHealthBuilding.requestBlood()
-exHealthBuilding.incrementDay()
-exHealthBuilding.incrementDay()
-exHealthBuilding.incrementDay()
-exHealthBuilding.requestBlood()
-exHealthBuilding.bloodtransfusion()
-exHealthBuilding.printDate()
-
-# Things I learned when making this program
-# 1. You cannot have more than one __init__.
-# 1a. I was trying to make a default constructor and an overloaded constructor similar in Java.
-# 2. When making keyword argument variables, the variables have to be the same name as the variable in the function parameter.
-# 3. To increment a value like an int, use the "+=" operator.
-# 4. To decrement a value, use the "-=" operator.
-
-# Things to Remember and Recap:
-# 1. Sets vs Lists vs Dictionary
-# 2. __init__
-# 3. Mutable objects such as lists, dictionaries, and sets are shared in all instances if it is declared as a class variable. i.e outside __init__
+# The map() function above applies the function to every individual element of the list.
+# The list() function takes in an iterable data type and returns the list.
