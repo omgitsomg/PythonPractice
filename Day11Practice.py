@@ -18,6 +18,7 @@ class HealthBuilding:
         self.nurses = numNurses
         self.doctors = numDoctors 
         self.patients = numPatients
+        currentDate = date.today()
 
     def prepareBlood(self):
         if self.bloodsupply is True:
@@ -26,13 +27,17 @@ class HealthBuilding:
             print("There's not enough blood supply for a blood transfusion\nPlease request blood from the", self.city, "blood center")
 
     def requestBlood(self):
-        #self.bloodsupply = False
-        print("""The request for blood from the blood center has been sent,
-                    The blood center said the blood will arrive in 4 days.
-                    Estimated Date of Arrival:""", currentDate = timedelta(day = 3))
+        estimatedDateofArrival = date.today() + timedelta(days = 3)
+        if self.currentDate != estimatedDateofArrival:
+            print("The request for blood from the blood center has been sent")
+            print("The blood center said the blood will arrive in a few days.")
+            print("Estimated Date of Arrival:", estimatedDateofArrival)
+        else:
+            self.bloodsupply = True
+            print("The blood from the blood center has arrived!\nWe can perform blood transfusions now.")
 
     def incrementDay(self):
-        currentDate = timedelta(day = 1)
+        self.currentDate =  self.currentDate + timedelta(days = 1)
 
     def printProperties(self):
         tempDict = {"City:" : self.city,
@@ -44,14 +49,44 @@ class HealthBuilding:
         for i, j in tempDict.items():
             print(i, j)
 
+    def patientLeaves(self):
+        self.patients -= 1
+        print("A patient has been discharged from the hospital!")
+
+    def bloodtransfusion(self):
+        if self.bloodsupply is True:
+            print("The blood for the blood transfusion is ready.")
+            print("The blood transfusion for the patient was successful!")
+            print("The patient was happy about the operation!")
+            self.patientLeaves()
+        else:
+            print("The hospital does not have adequate amounts of blood for a blood transfusion.")
+            print("Please wait until the blood from the blood center arrives.")
+
+    def printDate(self):
+        print(self.currentDate)
+
+
+
+
+
 
 exHealthBuilding = HealthBuilding(newStatus = "Full", numNurses = 25, numDoctors = 5, numPatients = 30)
 exHealthBuilding.printProperties()
+exHealthBuilding.requestBlood()
+exHealthBuilding.incrementDay()
+exHealthBuilding.incrementDay()
+exHealthBuilding.incrementDay()
+exHealthBuilding.requestBlood()
+exHealthBuilding.bloodtransfusion()
+exHealthBuilding.printDate()
 
 # Things I learned when making this program
-# 1. You cannot have more than one __init__
-# 1a. I was trying to make a default constructor and an overloaded constructor similar in Java
-# 2. When making keyword argument variables, the variables have to be the same name as the variable in the function parameter
+# 1. You cannot have more than one __init__.
+# 1a. I was trying to make a default constructor and an overloaded constructor similar in Java.
+# 2. When making keyword argument variables, the variables have to be the same name as the variable in the function parameter.
+# 3. To increment a value like an int, use the "+=" operator.
+# 4. To decrement a value, use the "-=" operator.
 
 # Things to Remember and Recap:
 # 1. Sets vs Lists vs Dictionary
