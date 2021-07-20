@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>84eec53f-83e6-4f36-a972-6fe3c33d9a52</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>TestingPythonPractice.py</StartupFile>
+    <StartupFile>Day18Practice.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -12,6 +12,7 @@
     <Name>PythonPractice</Name>
     <RootNamespace>PythonPractice</RootNamespace>
     <IsWindowsApplication>False</IsWindowsApplication>
+    <SuppressConfigureTestFrameworkPrompt>true</SuppressConfigureTestFrameworkPrompt>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,6 +42,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Day17Practice.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Day18Practice.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Day2Practice.py">
